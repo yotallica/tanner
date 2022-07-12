@@ -12,7 +12,7 @@ class Api:
     async def return_snares(self):
         query_res = []
         try:
-            query_res = await self.redis_client.smembers("snare_ids", encoding='utf-8')
+            query_res = await self.redis_client.smembers("snare_ids")
         except aioredis.exceptions.ConnectionError as connection_error:
             self.logger.exception("Can not connect to redis %s", connection_error)
         return list(query_res)
@@ -39,7 +39,7 @@ class Api:
     async def return_snare_info(self, uuid, count=-1):
         query_res = []
         try:
-            query_res = await self.redis_client.zrevrangebyscore(uuid, offset=0, count=count, encoding='utf-8')
+            query_res = await self.redis_client.zrevrangebyscore(uuid, offset=0, count=count)
         except aioredis.exceptions.ConnectionError as connection_error:
             self.logger.exception("Can not connect to redis %s", connection_error)
         else:
