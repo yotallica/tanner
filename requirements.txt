@@ -4,7 +4,7 @@ aiohttp_jinja2==1.5
 docker<2.6
 mimesis<3.0.0
 yarl
-redis==4.3.4
+redis==5.0.14
 aioredis
 pymongo
 pylibinjection
