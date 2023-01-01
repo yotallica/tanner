@@ -39,7 +39,7 @@ class Api:
     async def return_snare_info(self, uuid, count=-1):
         query_res = []
         try:
-            query_res = await self.redis_client.zrevrangebyscore(uuid, offset=0, count=count)
+            query_res = await self.redis_client.zrange(name=uuid, start=0, end=count) # zrange has simpler interface than the other method and it works
         except aioredis.exceptions.ConnectionError as connection_error:
             self.logger.exception("Can not connect to redis %s", connection_error)
         else:
